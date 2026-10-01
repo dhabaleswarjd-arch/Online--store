@@ -5,10 +5,80 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>GlowRoad India</title>
+.menu-btn{
+  position:fixed;
+  top:15px;
+  left:15px;
+  z-index:1000;
+  background:#08a8e8;
+  color:white;
+  border:0;
+  border-radius:10px;
+  padding:10px 14px;
+  font-size:22px;
+}
 
+.menu-panel{
+  display:none;
+  position:fixed;
+  top:60px;
+  left:15px;
+  z-index:999;
+  width:230px;
+  background:white;
+  border-radius:15px;
+  box-shadow:0 4px 15px #aaa;
+  padding:10px;
+}
+
+.menu-panel button{
+  width:100%;
+  padding:13px;
+  margin:4px 0;
+  border:0;
+  border-radius:8px;
+  background:#f4f8fc;
+  text-align:left;
+  font-size:16px;
+}
 <style>
-*{box-sizing:border-box;margin:0;padding:0}
-body{
+*{box-sizing:border-box;margin:0;padding:0}<script>
+function toggleMenu(){
+  const menu = document.getElementById("menuPanel");
+  menu.style.display =
+    menu.style.display === "block" ? "none" : "block";
+}
+
+function showOrders(){
+  toggleMenu();
+  alert("📦 My Orders\n\nYour orders will appear here.");
+}
+
+function showAbout(){
+  toggleMenu();
+  alert("GlowRoad India\n\nYour one-stop destination for shopping deals.");
+}
+
+function shareApp(){
+  if(navigator.share){
+    navigator.share({
+      title:"GlowRoad India",
+      text:"Check out GlowRoad India!",
+      url:window.location.href
+    });
+  }else{
+    alert("Share this website: " + window.location.href);
+  }
+}
+</script>
+body{<button class="menu-btn" onclick="toggleMenu()">☰</button>
+
+<div id="menuPanel" class="menu-panel">
+  <button onclick="showOrders()">📦 My Orders</button>
+  <button onclick="showAbout()">ℹ️ About Us</button>
+  <button onclick="shareApp()">📤 Share App</button>
+  <button onclick="toggleMenu()">✖️ Close</button>
+</div>
   font-family:Arial,sans-serif;
   background:#f4f8fc;
   color:#151515;
